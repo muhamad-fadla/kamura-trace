@@ -13,15 +13,15 @@ const routes = (fastify) => {
 
 	fastify.get('/search', async(req,res) => {
 
-		console.log(req.query.url)
+		let tick = Date.now();
 
 		let response = await axios.get(`https://api.trace.moe/search?url=${encodeURIComponent(req.query.url)}`);
 
-
 		res.send({...response.data, ...{
-			ip: req.ip
+			ip: req.ip,
+			timestamp: Date.now() - tick
 		}});
-	})
+	});
 
 }
 

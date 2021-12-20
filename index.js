@@ -17,7 +17,10 @@ const routes = (fastify) => {
 
 		let response = await axios.get(`https://api.trace.moe/search?url=${encodeURIComponent(req.query.url)}`);
 
-		res.send(response.data);
+
+		res.send({...response.data, ...{
+			ip: req.ip
+		}});
 	})
 
 }

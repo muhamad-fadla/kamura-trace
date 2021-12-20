@@ -1,6 +1,5 @@
 const Fastify = require('fastify');
 const axios = require('axios');
-const ip = require('ip')
 
 const routes = (fastify) => {
 
@@ -20,9 +19,9 @@ const routes = (fastify) => {
 
 		res.send({...response.data, ...{
 			client_ip: req.ip,
-			server_ip: ip.address(),
 			timestamp: Date.now() - tick
 		}});
+		
 	});
 
 }

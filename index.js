@@ -1,5 +1,6 @@
 const Fastify = require('fastify');
 const axios = require('axios');
+const ip = require('ip')
 
 const routes = (fastify) => {
 
@@ -18,7 +19,8 @@ const routes = (fastify) => {
 		let response = await axios.get(`https://api.trace.moe/search?url=${encodeURIComponent(req.query.url)}`);
 
 		res.send({...response.data, ...{
-			ip: req.ip,
+			client_ip: req.ip,
+			server_ip: ip.address(),
 			timestamp: Date.now() - tick
 		}});
 	});

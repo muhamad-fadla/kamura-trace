@@ -23,6 +23,18 @@ const routes = (fastify) => {
 		}});
 		
 	});
+	
+	fastify.get('/me', async(req,res)=> {
+		let tick = Date.now();
+
+		let response = await axios.get(`https://api.trace.moe/me`);
+
+		res.send({...response.data, ...{
+			client_ip: req.ip,
+			timestamp: Date.now() - tick
+		}});
+		
+	})
 
 }
 

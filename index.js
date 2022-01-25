@@ -3,7 +3,6 @@ const axios = require('axios');
 
 const routes = (fastify) => {
 
-
 	fastify.get('/', (req,reply) => {
 		reply.send({
 			status: 'ok'
